@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    title Tetris
+    // include jQuery
+    script(src='/js/jquery-3.4.1.min.js')
+    // include js
+    script(src='/js/main.js')
+    // include bootstrap
+    link(rel='stylesheet', type='text/css', href='/css/bootstrap.min.css')
+    script(src='/js/bootstrap.min.js')
+    // include css
+    link(rel='stylesheet', type='text/css', href='/css/style.css')
+  body
+    img(src='/multimedia/hero-tetris-scaled.jpg', style='width:100%; height: 100%')
+    // Login
+    .container.login
+      img.center-block.img-responsive(src='/multimedia/user-min.png')
+      form.account(method='post', action='/users/login')
+        // Username
+        .control-label.text-center Username
+        .center-block
+          input.form-control.text-center(type='text', placeholder='Type your Username', required='', name='username')
+        // password
+        .control-label.text-center Password
+        .center-block
+          input.form-control.text-center(type='password', placeholder='Type your password', required='', name='password')
+        // sign in
+        .col-sm-offset-2.col-sm-8
+          button.btn(style='margin-left:80px;', type='submit') Log in
+      div(style='font-family: Comic Sans MS ;margin-top: 100px; margin-left: 140px;')
+        | Don't have an account!
+        a(href='/users/register') Register
+    script.
+      var username = document.forms['.account']['username'].value;
+      localStorage.setItem('username',username);

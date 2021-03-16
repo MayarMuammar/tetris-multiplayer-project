@@ -1,0 +1,104 @@
+doctype html
+html
+  head
+    title Tetris
+    // include jQuery
+    script(src='/js/jquery-3.4.1.min.js')
+    // include bootstrap
+    script(src='/js/bootstrap.min.js')
+    link(rel='stylesheet', type='text/css', href='/css/bootstrap.min.css')
+    // include css
+    link(rel='stylesheet', type='text/css', href='/css/style.css')
+    // include js
+    script(src='/js/client/main.js')
+  body
+    img.image.center-block.img-responsive(src='/multimedia/pinpng.com-tetris-png-6298224.png', style=' position: absolute; width: 400px; margin-left: 450px;')
+    img#cimg(src='/multimedia/istockphoto-859802464-1024x1024.jpg', style='width: 100%')
+    // player 1
+    .col-lg-6
+      canvas#tetris(width='320', height='420', style='position: absolute;transform: translate(50%, -170%);')
+      form(style='font-size: 20px; font-family: Comic Sans MS;position: absolute;transform: translate(500%, -450%);')
+        span#gid #{locals.user.gameID}
+        br
+        span#name #{locals.user.name}
+        br
+        span Score:
+        span#score
+        br
+        span Bonus:
+        span#bonus
+        br
+        span Level:
+        span#level
+        br
+      .mmbtn(style='position: absolute;transform: translate(35%, -700%);')
+        button#left.btn.btn-info.mbtn.glyphicon.glyphicon-arrow-left
+        button#right.btn.btn-info.mbtn.glyphicon.glyphicon-arrow-right
+        button#rotate.btn.btn-info.mbtn.glyphicon.glyphicon-refresh
+        button#down.btn.btn-info.mbtn.glyphicon.glyphicon-arrow-down
+    // player2
+    .col-lg-6
+      .col-lg-6
+        canvas#tetris1(width='100', height='200', style='position: absolute;transform: translate(100%, -350%);')  
+        form.player2info(style='font-size: 10px;position: absolute;transform: translate(300%, -2500%);')
+          span Username:
+          span#user1
+          br
+          span Score:
+          span#score1
+          br
+      // player3
+      .col-lg-6
+        canvas#tetris2(width='100', height='200', style='position: absolute;transform: translate(130%, -350%);')
+        form.player2info(style='font-size: 10px;position: absolute;transform: translate(350%, -2500%);')
+          span Username:
+          span#user2
+          br
+          span Score:
+          span#score2
+          br
+      // player4
+      .col-lg-6(style='margin-left: 150px;font-size: 10px;')
+        canvas#tetris3(width='100', height='200', style='position: absolute;transform: translate(110%, -230%')
+        form.player2info(style='position: absolute;transform: translate(320%, -1700%')
+          span Username:
+          span#user3
+          br
+          span Score:
+          span#score3
+          br
+    a#exit.btn.btn-primary(style='width: 150px;position: absolute;transform: translate(-010%, -100%') Exit
+    .issure
+      p(style='margin-bottom: 50px;') Are You Sure?
+      button#continue.glyphicon.glyphicon-play.btn.btn-success(style='width: 70px;height: 40px; margin-top: 40px; margin-left: 120px;')
+      a.glyphicon.glyphicon-home.btn.btn-danger(href='/index', style='width: 70px;height: 40px;margin-top: 40px;margin-left: 100px ')
+    .endofround(style='display: none;')
+      p(style='margin-bottom: 50px;') End Of Round
+      b#first(style='font-size: 20px; font-family: Comic Sans MS;margin-left: 170px; margin-top: 100px;')
+      br
+      br
+      b#second(style='font-size: 20px; font-family: Comic Sans MS;margin-left: 170px; margin-top: 100px;')
+      br
+      br
+      b#third(style='font-size: 20px; font-family: Comic Sans MS;margin-left: 170px; margin-top: 100px;')
+      br
+      br
+      b#fourth(style='font-size: 20px; font-family: Comic Sans MS;margin-left: 170px; margin-top: 100px;')
+      br
+      br
+      a.glyphicon.glyphicon-home.btn.btn-info(href='/', style='width: 70px;height: 40px;margin-top: 60px; margin-left: 200px;')
+    script(src='js/client/Board.js')
+    script(src='js/client/tetromino.js')
+    script(src='js/client/Piece.js')
+    script(src='js/client/Piece-Manager.js')
+    script(src='js/client/Player.js')
+    script(src='js/client/Game.js')
+    script(src='js/client/Tetris.js')
+    script(src='js/client/TetrisManager.js')
+    script(src='js/client/Connection.js')
+    script.
+      //- alert('Thi',#{locals.user.gameID});
+      //- let id = localStorage.gameID;
+      //- console.log(id);
+      const tetrisManager = new TetrisManager(document, 'multigame');
+      tetrisManager.main();

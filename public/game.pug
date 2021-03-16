@@ -1,0 +1,41 @@
+doctype html
+html
+  head
+    title Tetris
+    // include jQuery
+    script(src='/js/jquery-3.4.1.min.js')
+    // include bootstrap
+    script(src='/js/bootstrap.min.js')
+    link(rel='stylesheet', type='text/css', href='/css/bootstrap.min.css')
+    // include css
+    link(rel='stylesheet', type='text/css', href='/css/style.css')
+    // include js
+    script(src='/js/client/main.js')
+  body
+    .video-container
+      .color-overlay
+      video#myVideo(autoplay='', muted='', loop='')
+        source(src='/multimedia/Tetris Dodging is Hard(480P).mp4')
+    img.logo(src='/multimedia/pinpng.com-tetris-logo-png-4933203.png')
+    .hbtn.col-lg-6.col-md-6
+      button.ModeS.center-block Single Player
+    .hbtn.col-lg-6.col-md-6
+      button.ModeM.center-block Multi Player
+    form#single.singleMode(style='display: none;', action='/singlegame', method='post')
+      p Username:
+      input.btn(type='submit', value='Start Game', style='margin-left: 70px; font-size: 20px')
+      // <a href="singlegame.html" class="btn" style="margin-left: 70px; font-size: 20px">Start Game</a>
+    form#multi.multiMode(style='display: none; ',method='post',action='/join')
+      p Username:
+      input.join.btn(type='button', style='background-color: white; width: 270px;font-size: 20px', value='Join Group Game By ID')
+      input.id(type='text', placeholder='Type Your ID here', style='display: none;', name='gid', required='')
+      br
+      br
+      button.id.btn#join(style='display: none; margin-left: 100px; background-color: white;font-size: 20px', type = 'submit') Join
+      a.new.btn(href='/multigame', style='background-color: white;font-size: 20px;width: 270px;text-align: center;') Create A New Game
+    .morebtn
+      ul(style='list-style-type:none;')
+        li
+          a.btn.btn-danger(href='/info', style='margin: 5px;') Info
+        li
+          a.btn.btn-danger(href='/gamerules', style='margin: 5px;') Game Rules

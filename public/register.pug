@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    title Tetris
+    // include jQuery
+    script(src='js/jquery-3.4.1.min.js')
+    // include js
+    script(src='js/main.js')
+    // include bootstrap
+    link(rel='stylesheet', type='text/css', href='/css/bootstrap.min.css')
+    script(src='js/bootstrap.min.js')
+    // include css
+    link(rel='stylesheet', type='text/css', href='/css/style.css')
+  body
+    // Register
+    img(src='/multimedia/hero-tetris-scaled.jpg', style='width:100%; height: 100%')
+    .row.center-block.register
+      h2(style='font-family: Comic Sans MS; margin-left: 200px; color:#cc6600') Join The Game NOW
+      .col-lg-6.col-md-6.col-sm-6.col-xs-6
+        img.img-responsive(src='/multimedia/1200x630wa.png')
+      form.col-lg-6.col-md-6.col-sm-6.col-xs-6.personalinfo(method='post', action='/users/register')
+        // name
+        .control-label.col-sm-2 Name
+        .col-sm-12.col-xs-10
+          input.form-control.text-center(type='text', placeholder='Type your name', required='', name='name')
+        // username
+        .control-label.col-sm-2 Userame
+        .col-sm-12.col-xs-10
+          input.form-control.text-center(type='text', placeholder='Type your Username', required='', name='username')
+        // password
+        .control-label.col-sm-2 Password
+        .col-sm-12.col-xs-10
+          input.form-control.text-center(type='password', placeholder='Type your  password', required='', name='password')
+        // sign up
+        .col-sm-offset-2.col-sm-8
+          button.btn(style='margin-right:50px;', type='submit') Register
+      div(style='font-family: Comic Sans MS ;margin-left: 180px;margin-top: 50px;')
+        | Or 
+        a(href='/users/login')  Login

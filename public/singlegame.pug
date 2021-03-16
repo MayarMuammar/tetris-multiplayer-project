@@ -1,0 +1,67 @@
+include header.pug
+
+body.background
+    form.playerinfo(style=' position: absolute;left: 80%')
+      p#name #{locals.user.name}
+      p
+        | Score:
+        span#score
+      p
+        | Bonus:
+        span#bonus
+      p
+        | Level:
+        span#level
+    img.image.center-block.img-responsive(src='/multimedia/pinpng.com-tetris-png-6298224.png', style=' position: absolute; width: 400px; margin-left: 450px;')
+    img#cimg(src='/multimedia/istockphoto-859802464-1024x1024.jpg', style='width: 100% ;height:720px')
+    canvas#tetris.center-block(width='500', height='500', style=' position: absolute;top: 60%;left:50%;transform: translate(-50%, -50%);')
+    .smbtn(style=' position: absolute;top: 90%; margin-left: 900px')
+      button#left.btn.btn-info.sbtn.glyphicon.glyphicon-arrow-left
+      button#right.btn.btn-info.sbtn.glyphicon.glyphicon-arrow-right
+      button#down.btn.btn-info.sbtn.glyphicon.glyphicon-arrow-down
+      button#rotate.btn.btn-info.sbtn.glyphicon.glyphicon-refresh
+      button#pause.btn.btn-info.sbtn.glyphicon.glyphicon-pause
+    .morebtn
+      ul(style='list-style-type:none;')
+        li
+          button#soundon.glyphicon.glyphicon-music.btn.btn-success(style='postition:fixed; top:100%; left:95% ; transform: translate(-50%,-110%);')
+        li
+          button#themes.glyphicon.glyphicon-transfer.btn.btn-success(style='postition:fixed; top:90%; left:95% ; transform: translate(-50%,-50%);')
+    .pause1
+      p(style='margin-bottom: 50px;') Pause.
+      b(style='font-size: 20px; font-family: Comic Sans MS;margin-left: 120px; margin-top: 100px;') Click to continue or exit!!
+      button#continue.glyphicon.glyphicon-play.btn.btn-success(style='width: 70px;height: 40px; margin-top: 40px; margin-left: 120px;')
+      a.glyphicon.glyphicon-home.btn.btn-danger(href='/', style='width: 70px;height: 40px;margin-top: 40px;margin-left: 100px ')
+    .gameover
+      p(style='margin-bottom: 50px;') Game Over.
+      b(style='font-size: 20px; font-family: Comic Sans MS;margin-left: 170px; margin-top: 100px;') Your Score Is:
+      br
+      b#gameover(style='font-size: 20px; font-family: Comic Sans MS;margin-left: 170px; margin-top: 100px; margin-left: 230px;')
+      br
+      a.glyphicon.glyphicon-repeat.btn.btn-info(href='/', style='width: 70px;height: 40px;margin-top: 60px; margin-left: 200px;')
+    include js.pug
+    script.
+      const tetrisManager = new TetrisManager(document, 'singlegame', null);
+      tetrisManager.main();
+      let sOFF = false;
+      let tChange = false;
+      $(function() {
+                $("#soundon").click(function() {
+                    if(!sOFF){
+                      tetrisManager.sound.stop();
+                      sOFF = true;
+                    } else {
+                      tetrisManager.sound.play();
+                      sOFF = false;
+                    }
+                });
+                $("#themes").click(function() {
+                  if(!tChange){
+                    tetrisManager.local.colors = ["grey", "#ff0000", "#00cc00","#ffffo","#0080ff","ff33cc","#999966","#ff9933","grey"];
+                    tChange = true;
+                  } else {
+                    tetrisManager.local.colors = ["white","#800000","#cccc00","#006000","#000000","#000099","#660066","#e62e00","white"];
+                    tChange = false;
+                  }
+                });
+            });
